@@ -1,0 +1,41 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: blackboxrag_postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: blackbox
+      POSTGRES_PASSWORD: blackbox
+      POSTGRES_DB: blackboxrag
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U blackbox -d blackboxrag"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: blackboxrag_api
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DATABASE_URL: postgresql+psycopg://blackbox:blackbox@postgres:5432/blackboxrag
+      APP_ENV: production
+      DEBUG: "false"
+      HOST: 0.0.0.0
+      PORT: 8000
+    ports:
+      - "8000:8000"
+
+volumes:
+  postgres_data:
