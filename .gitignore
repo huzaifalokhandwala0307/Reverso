@@ -21,10 +21,11 @@ htmlcov/
 
 # Databases & local data
 data/chroma_store/
+legacy/data/chroma_store/
+**/chroma_store/
 *.db
 *.sqlite3
 
 # IDE
 .vscode/
 .idea/
-
