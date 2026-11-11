@@ -1,0 +1,22 @@
+BlackBoxRAG
+Copyright 2024-2026 The BlackBoxRAG Authors
+
+This product includes software derived from RAG-From-Scratch
+(https://github.com/Abhilasha-Mangal/RAG-From-Scratch).
+
+LICENSE AND ATTRIBUTION NOTICE:
+The base repository contains a LICENSE file with the Apache License,
+Version 2.0 (with copyright placeholders unfilled), while its README.md
+displays an MIT License badge. Pending clarification from the original author,
+BlackBoxRAG adheres to the terms of the Apache License, Version 2.0 for all
+reused code components.
+
+Original code components preserved for reference and unmaintained execution
+reside in the legacy/ directory.
+
+Derived / Reused Components:
+- Any reused embedder abstractions (BaseEmbedder) and LLM clients (BaseLLM)
+  retain original copyright and licensing headers, with explicit notes on
+  modifications made.
+- In Milestone 1, all new core application modules (backend/app/*) are developed
+  clean-room for the BlackBoxRAG architecture.
